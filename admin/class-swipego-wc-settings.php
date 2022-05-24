@@ -280,7 +280,7 @@ class Swipego_WC_Settings {
 
             $params = array(
                 'name'    => 'payment.created',
-                'url'     => WC()->api_request_url( get_class( $this ) ),
+                'url'     => WC()->api_request_url( 'swipego_wc_gateway' ),
                 'enabled' => true,
             );
 
