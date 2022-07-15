@@ -18,6 +18,8 @@ class Swipego_WC {
         if ( swipego_is_logged_in() && swipego_is_plugin_activated( 'woocommerce/woocommerce.php' ) ) {
 
             // API
+            require_once( SWIPEGO_WC_PATH . 'libraries/swipego/includes/abstracts/abstract-swipego-client.php' );
+            require_once( SWIPEGO_WC_PATH . 'libraries/swipego/includes/class-swipego-api.php' );
             require_once( SWIPEGO_WC_PATH . 'includes/class-swipego-wc-api.php' );
 
             // Settings

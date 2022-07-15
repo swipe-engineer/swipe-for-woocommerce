@@ -1,7 +1,7 @@
 <?php
 if ( !defined( 'ABSPATH' ) ) exit;
 
-class Swipego_WC_API extends Swipego_API {
+class Swipego_WC_API extends Swipego_API_WC {
 
     // Initialize API
     public function __construct() {
