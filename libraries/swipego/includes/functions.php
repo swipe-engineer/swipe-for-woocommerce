@@ -24,6 +24,26 @@ function swipego_delete_access_token() {
     return delete_transient( 'swipego_access_token' );
 }
 
+// Get integration
+function swipego_get_integration() {
+    return get_transient( 'swipego_integration' );
+}
+
+// Update integration
+function swipego_update_integration($email) {
+    return set_transient( 'swipego_integration', $email, 0 );
+}
+
+// Delete integration
+function swipego_delete_integration() {
+    return delete_transient( 'swipego_integration' );
+}
+
+// Check if the user is has integration into Swipe
+function swipego_has_integration() {
+    return swipego_get_integration() ? true : false;
+}
+
 // Check if the user is logged into Swipe
 function swipego_is_logged_in() {
     return swipego_get_access_token() ? true : false;

@@ -112,7 +112,7 @@ class Swipego_WC_Gateway extends WC_Payment_Gateway
             $params = array(
                 'email'        => $order->get_billing_email(),
                 'currency'     => $order->get_currency(),
-                'amount'       => (float) $order->get_total(),
+                'amount'       => number_format($order->get_total(), 2),
                 'title'        => get_bloginfo(),
                 'phone_no'     => preg_replace('/[^0-9]/', '', $order->get_billing_phone()),
                 'description'  => sprintf(__('Payment for Order #%d', 'swipego-wc'), $order_id),
