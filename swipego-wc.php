@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Swipe for WooCommerce
  * Description:       Swipe payment integration for WooCommerce.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Requires at least: 4.6
  * Requires PHP:      7.0
  * Author:            Fintech Worldwide Sdn. Bhd.
