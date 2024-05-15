@@ -90,5 +90,8 @@ Social Media: [Facebook](https://www.facebook.com/swipego/)
 
 == Changelog ==
 
+= 1.0.2 - 2024-05-16 =
+- Fix expired token
+
 = 1.0.0 - 2022-04-11 =
 - Initial release of the plugin
