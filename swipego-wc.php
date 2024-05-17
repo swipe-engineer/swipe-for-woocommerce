@@ -15,8 +15,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 if ( class_exists( 'Swipego_WC' ) ) return;
 
-if ( ! function_exists('swipego_get_integration') ) return;
-
 define( 'SWIPEGO_WC_FILE', __FILE__ );
 define( 'SWIPEGO_WC_URL', plugin_dir_url( SWIPEGO_WC_FILE ) );
 define( 'SWIPEGO_WC_PATH', plugin_dir_path( SWIPEGO_WC_FILE ) );
