@@ -3,7 +3,7 @@ Contributors: teamswipe
 Tags: swipe, woocommerce, payment
 Requires at least: 4.6
 Tested up to: 6.0.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -89,6 +89,9 @@ Explore us: [www.swipego.io](https://www.swipego.io)
 Social Media: [Facebook](https://www.facebook.com/swipego/)
 
 ## Changelog
+
+= 1.0.3 - 2024-06-05 =
+- Fix Redirect login
 
 = 1.0.2 - 2024-05-16 =
 - Fix expired token
