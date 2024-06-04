@@ -36,6 +36,9 @@ function swipego_update_integration($email) {
 
 // Delete integration
 function swipego_delete_integration() {
+    
+    update_option( 'woocommerce_swipego_settings', [] );
+
     return delete_transient( 'swipego_integration' );
 }
 

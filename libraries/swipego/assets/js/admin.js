@@ -157,4 +157,48 @@ jQuery(document).ready(function($) {
             }
         });
     });
+    
+    // Handle refresh login
+    $('#swipego-refresh').on( 'click', function() {
+        var btn      = $(this),
+            btn_text = btn.text();
+
+        $.ajax({
+            url: swipego_refresh.ajax_url,
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                action: 'swipego_refresh',
+                nonce: swipego_refresh.nonce,
+            },
+            beforeSend: function() {
+                btn.prop('disabled', true);
+                btn.css('cursor', 'wait');
+            },
+            success: function(response) {
+                btn.prop('disabled', false);
+                btn.css('cursor', 'pointer');
+                location.href = "admin.php?page=swipego";
+            },
+            error: function(xhr) {
+                btn.prop('disabled', false);
+                btn.css('cursor', 'pointer');
+
+                var error = JSON.parse(xhr.responseText);
+
+                if (error && error.data && error.data.message) {
+                    var message = '<span class="font-medium">Error!</span> ' + error.data.message + '.';
+                } else {
+                    var message = 'An error occured! Please try again.';
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: message,
+                    timer: 3000,
+                });
+            }
+        });
+    });
 });

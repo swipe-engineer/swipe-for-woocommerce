@@ -13,6 +13,7 @@ class Swipego_WC_Settings {
         'signature_key',
         'environment',
         'business_id',
+        'business_name',
     );
 
     // Register hooks
@@ -42,6 +43,7 @@ class Swipego_WC_Settings {
             'signature_key' => '',
             'environment'   => 'sandbox',
             'business_id'   => '',
+            'business_name' => '',
         );
 
         if ( !$settings ) {
@@ -74,6 +76,7 @@ class Swipego_WC_Settings {
         $signature_key = swipego_wc_get_setting( 'signature_key' );
         $environment   = swipego_wc_get_setting( 'environment' );
         $business_id   = swipego_wc_get_setting( 'business_id' );
+        $business_name = swipego_wc_get_setting( 'business_name' );
 
         $businesses = swipego_wc_get_businesses();
         $current_business = null;
@@ -86,6 +89,10 @@ class Swipego_WC_Settings {
                     break;
                 }
             }
+        }
+        
+        if ($business_id && $current_business == null) {
+            $current_business['name'] = $business_name;
         }
 
         ob_start();

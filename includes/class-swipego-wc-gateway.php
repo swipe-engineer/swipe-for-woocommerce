@@ -9,6 +9,7 @@ class Swipego_WC_Gateway extends WC_Payment_Gateway
     private $api_key;
     private $signature_key;
     private $business_id;
+    private $business_name;
     private $environment;
     private $debug;
 
@@ -28,6 +29,7 @@ class Swipego_WC_Gateway extends WC_Payment_Gateway
         $this->api_key            = $this->get_option('api_key');
         $this->signature_key      = $this->get_option('signature_key');
         $this->business_id        = $this->get_option('business_id');
+        $this->business_name      = $this->get_option('business_name');
         $this->environment        = $this->get_option('environment');
         $this->debug              = $this->get_option('debug') === 'yes' ? true : false;
 

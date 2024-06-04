@@ -65,6 +65,7 @@ jQuery(document).ready(function($) {
                 action: 'swipego_wc_update_settings',
                 nonce: swipego_wc_update_settings.nonce,
                 business_id: selected_business_id,
+                business_name: selected_business_name,
             },
             beforeSend: function() {
                 btn.prop('disabled', true);

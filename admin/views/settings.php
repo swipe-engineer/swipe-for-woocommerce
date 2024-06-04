@@ -47,6 +47,18 @@
                                     </ul>
                                 </div>
                             </div>
+                        <?php elseif (isset($current_business['name'])) : ?>
+                            <div class="w-full">
+                                <button type="button" id="business" data-dropdown-toggle="business-items" class="inline-flex items-center bg-primary hover:bg-hover-button focus:bg-click-button text-white font-medium text-sm text-white text-center rounded-md px-4 py-2 disabled:opacity-50" disabled>
+                                    <svg class="h-5 w-5 flex-none mr-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path></svg>
+                                    <span><?php echo isset( $current_business['name'] ) ? esc_html( $current_business['name'] ) : esc_html__( 'Select a business', 'swipego-wc' ); ?></span>
+                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                                <span class="w-full text-gray-400 sm:mt-2 self-center block">
+                                    <?php esc_html_e( 'To select your business please', 'swipego-wc' ); ?>
+                                    <butoon id="swipego-refresh" class="text-primary hover:text-hover-button cursor-pointer">Login</butoon>
+                                </span>
+                            </div>
                         <?php else : ?>
                             <span class="w-full text-gray-400 sm:mt-2 self-center block"><?php esc_html_e( 'No business found.', 'swipego-wc' ); ?></span>
                         <?php endif; ?>
@@ -79,6 +91,8 @@
                         <label for="signature_key" class="w-64 text-sm font-medium text-gray-900 mb-2 sm:mt-2 sm:mb-0 block"><?php esc_html_e( 'API Signature Key', 'swipego-wc' ); ?></label>
                         <input type="text" id="signature_key" class="rounded-md bg-gray-50 w-full leading-normal px-4 py-2 shadow-sm text-sm border-none focus:ring-primary focus:ring-2 focus:outline-none ring-bordercolor" readonly value="<?php echo esc_attr( $signature_key ); ?>">
                     </div>
+                    
+                    <?php if ( $businesses ) : ?>
 
                     <div class="form-group flex flex-col sm:flex-row sm:items-center justify-end mb-6">
                         <span class="text-gray-400 px-5 pt-3 sm:pt-0 block order-last sm:order-first"><?php esc_html_e( 'Refetch the key if you have reset any API or Signature Key on Swipe.', 'swipego-wc' ); ?></span>
@@ -89,6 +103,8 @@
                         <span class="text-gray-400 px-5 pt-3 sm:pt-0 block order-last sm:order-first"><?php esc_html_e( 'Save WooCommerce webhook URL in Swipe to receive payment notification.', 'swipego-wc' ); ?></span>
                         <button id="set-webhook" class="relative w-full sm:w-auto px-6 py-2 rounded-md inline-flex items-center justify-center disabled:opacity-50 border transition-all text-sm bg-primary hover:bg-hover-button focus:bg-click-button text-white border-transparent ring-none" type="button"><?php esc_html_e( 'Set Webhook', 'swipego-wc' ); ?></button>
                     </div>
+                    
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-section pt-6">

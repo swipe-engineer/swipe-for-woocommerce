@@ -10,6 +10,7 @@ abstract class Swipego_Client_WC {
     protected $api_key = null;
     protected $signature_key = null;
     protected $business_id = null;
+    protected $business_name = null;
     protected $environment = true;
     protected $debug = false;
 
@@ -51,6 +52,10 @@ abstract class Swipego_Client_WC {
 
     public function set_business_id( $business_id ) {
         $this->business_id = $business_id;
+    }
+
+    public function set_business_name( $business_name ) {
+        $this->business_name = $business_name;
     }
 
     public function set_environment( $environment ) {

@@ -13,6 +13,7 @@ class Swipego_Admin {
 
         add_action( 'wp_ajax_swipego_login', array( $this, 'login' ) );
         add_action( 'wp_ajax_swipego_logout', array( $this, 'logout' ) );
+        add_action( 'wp_ajax_swipego_refresh', array( $this, 'refresh' ) );
 
     }
 
@@ -179,6 +180,11 @@ class Swipego_Admin {
             'nonce'    => wp_create_nonce( 'swipego_logout_nonce' ),
         ) );
 
+        wp_localize_script( 'swipego-admin', 'swipego_refresh', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( 'swipego_refresh_nonce' ),
+        ) );
+
     }
 
     // Process Swipe account login
@@ -229,7 +235,13 @@ class Swipego_Admin {
 
             if ( isset( $data['token'] ) && !empty( $data['token'] ) ) {
                 swipego_update_access_token( $data['token'], $remember );
+                
+                if (swipego_get_integration() !== $email) {
+                    swipego_delete_integration();
+                }
+                
                 swipego_update_integration($email);
+                
             } else {
                 throw new Exception( __( 'An error occured! Please try again.', 'swipego' ) );
                 
@@ -266,6 +278,31 @@ class Swipego_Admin {
 
         swipego_delete_access_token();
         swipego_delete_integration();
+
+        wp_send_json_success();
+
+    }
+
+    // Process Swipe account refresh
+    public function refresh() {
+
+        check_ajax_referer( 'swipego_refresh_nonce', 'nonce' );
+
+        $nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : null;
+
+        if ( !wp_verify_nonce( $nonce, 'swipego_refresh_nonce' ) ) {
+            wp_send_json_error( array(
+                'message' => __( 'Invalid nonce', 'swipego' ),
+            ), 400 );
+        }
+
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array(
+                'message' => __( 'No permission to execute the action', 'swipego' ),
+            ), 400 );
+        }
+
+        swipego_delete_access_token();
 
         wp_send_json_success();
 
